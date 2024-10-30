@@ -15,12 +15,12 @@ class LFUCache(BaseCaching):
         super().__init__()
         self.keys = []
         self.frequency = {}
-        
+
     def put(self, key, item):
-        """Add and item in the cache"""
+        """Add an item in the cache"""
         if key is None or item is None:
             return
-        
+
         if key in self.cache_data:
             self.keys.remove(key)
         self.cache_data[key] = item
