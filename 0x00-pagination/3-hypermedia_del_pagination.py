@@ -46,12 +46,12 @@ class Server:
         assert index >= 0 and index < len(self.indexed_dataset().keys())
         data = []
         indexes = list(self.indexed_dataset().keys())
-        page_indexes = indexes[index: index + page_size]
-        for idx in page_indexes:
-            data.append(self.indexed_dataset()[idx])
-        next_index = index + page_size if index + page_size < len(
-            self.indexed_dataset()
-            ) else None
+        next_index = index
+        while len(data) < page_size and next_index < len(indexes):
+            if next_index in self.indexed_dataset():
+                data.append(self.indexed_dataset()[next_index])
+            next_index += 1
+        next_index = next_index if next_index < len(indexes) else None
         return {
             'index': index,
             'next_index': next_index,
