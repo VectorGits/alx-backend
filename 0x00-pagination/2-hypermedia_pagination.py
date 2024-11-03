@@ -2,11 +2,10 @@
 """
 Hypermedia pagination
 """
-
-
 import csv
 import math
 from typing import List, Mapping
+
 
 class Server:
     """
@@ -27,7 +26,7 @@ class Server:
             self.__dataset = dataset[1:]
 
         return self.__dataset
-    
+
     def index_range(self, page: int, page_size: int) -> tuple:
         """
         Return a tuple of size two containing a start index and an end index
@@ -44,7 +43,7 @@ class Server:
         if start >= len(self.dataset()):
             return []
         return self.dataset()[start:end]
-    
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Mapping:
         """
         Return a dictionary containing key-value pairs
